@@ -1,6 +1,6 @@
 from django.contrib import admin
-from shp.models import Shp
 
 # Register your models here.
+from tiff.models import Tiff
 
-admin.site.register(Shp)
+admin.site.register(Tiff)
