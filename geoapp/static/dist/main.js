@@ -49,11 +49,11 @@
         'Water': watercolor,
         'Stamen': st
     }
-    var overlayMaps = {
-        'Geojson Markers': marker,
-        'single marker': singleMarker
-    }
-    L.control.layers(baseMaps, overlayMaps,{collapsed:false, position:'topleft' }).addTo(map)
+    // var overlayMaps = {
+    //     'Geojson Markers': marker,
+    //     'single marker': singleMarker
+    // }
+    // L.control.layers(baseMaps, overlayMaps,{collapsed:false, position:'topleft' }).addTo(map)
 
 
 
