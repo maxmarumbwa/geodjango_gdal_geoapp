@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from .models import Shp
 
 
 def index(request):
-    return render(request, "index.html")
+    shp = Shp.objects.all()
+    return render(request, "index.html", {"shp": shp})
 
 
 # Create your views here.

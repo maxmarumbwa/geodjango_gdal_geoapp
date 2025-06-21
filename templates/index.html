@@ -12,7 +12,7 @@
     <link rel="stylesheet" href={% static './lib/MarkerCluster.Default.css' %}>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <link rel="stylesheet" href={% static "dist/styles.css" %}>
-    <link rel="stylesheet" href={% static "./lib/leaflet-measure.js" %}>
+    <link rel="stylesheet" href={% static "./lib/leaflet-measure.css" %}>
 
 </head>
 
@@ -22,7 +22,7 @@
     <!--  Navbar -->
     <nav class="navbar navbar-expand-lg bg-info bg-grey">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Basic web GIS</a>
+            <a class="navbar-brand" href="#">Basic web GIS {{shp}}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -70,6 +70,7 @@
 
 
 </body>
+{{shp}}
 
 </html>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -81,3 +82,22 @@
 <script src={% static "data/test.js" %}></script>
 <script src={% static "dist/main.js" %}></script>
 <script src={% static "dist/web-gis.js" %}></script>
+
+<script>
+    //Shapefile wms
+    var overlayMaps = {};
+    {% for s in shp %}
+    var {{ s.name }} = L.tileLayer.wms('http://localhost:8080/geoserver/wms', {
+        layers: '{{s.name}}',
+        transparent: true,
+        format: 'image/png',
+    })
+    overlayMaps['{{ s.name }}'] = {{ s.name }}
+
+    {% endfor %}
+
+    overlayMaps['{{ t.name }}'] = {{ t.name }}
+
+    L.control.layers(baseMaps, overlayMaps, { collapsed: false, position: 'topleft' }).addTo(map);
+
+</script>

@@ -74,7 +74,7 @@ def publish_data(sender, instance, created, **kwargs):
 
     # publish shp to the geoserver using geoserver-rest
     geo.create_featurestore(
-        store_name="Vector",
+        store_name="geoApp",
         workspace="geoapp",
         db="geoapp",
         host="localhost",
